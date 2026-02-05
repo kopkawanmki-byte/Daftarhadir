@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Daftar Hadir - KAWAN MKI</title>
     
     <!-- Tailwind CSS -->
@@ -41,10 +41,15 @@
     <style>
         canvas {
             touch-action: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .glass-effect {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+        }
+        /* Penyesuaian tinggi input untuk mobile */
+        input, select, textarea {
+            font-size: 16px !important; /* Mencegah auto-zoom pada iOS */
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -62,53 +67,53 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-700">
+<body class="bg-slate-50 font-sans text-slate-700 antialiased">
 
     <!-- Header Section -->
     <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-3 md:space-x-4">
+            <div class="flex items-center space-x-3">
                 <img src="https://lh3.googleusercontent.com/d/1GfRYHdZVEnt3WnSLJfmMKzx3HLSctPCh" alt="Logo KAWAN MKI" class="h-10 md:h-14 w-auto object-contain" crossorigin="anonymous" onerror="this.src='https://placehold.co/100x100?text=MKI'">
-                <div class="border-l pl-3 md:pl-4 border-slate-200">
-                    <h1 class="text-lg md:text-xl font-extrabold text-koperasi-800 leading-tight tracking-tight uppercase">KAWAN MKI</h1>
-                    <p class="text-[9px] md:text-xs font-medium text-slate-500 tracking-wide uppercase leading-tight">Koperasi Konsumen Karyawan<br class="block md:hidden"> PT Mitra Kiara Indonesia</p>
+                <div class="border-l pl-3 border-slate-200">
+                    <h1 class="text-base md:text-xl font-extrabold text-koperasi-800 leading-tight tracking-tight uppercase">KAWAN MKI</h1>
+                    <p class="text-[8px] md:text-xs font-medium text-slate-500 tracking-wide uppercase leading-tight">Koperasi Konsumen Karyawan<br class="block md:hidden"> PT Mitra Kiara Indonesia</p>
                 </div>
             </div>
-            <div class="hidden md:block text-right">
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter mb-1">Hubungi Kami</p>
-                <div class="bg-koperasi-50 text-koperasi-700 px-3 py-1 rounded-full text-sm font-semibold border border-koperasi-100">
-                    <i class="fa-solid fa-phone text-xs mr-1"></i> 0857-1705-0604
-                </div>
-            </div>
-            <div class="md:hidden">
-                <a href="tel:085717050604" class="w-9 h-9 bg-koperasi-50 text-koperasi-600 rounded-full flex items-center justify-center border border-koperasi-200">
+            <div class="flex items-center">
+                <a href="tel:085717050604" class="w-10 h-10 bg-koperasi-50 text-koperasi-600 rounded-full flex items-center justify-center border border-koperasi-200 active:scale-95 transition-transform md:hidden">
                     <i class="fa-solid fa-phone"></i>
                 </a>
+                <div class="hidden md:block text-right">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter mb-1">Hubungi Kami</p>
+                    <div class="bg-koperasi-50 text-koperasi-700 px-3 py-1 rounded-full text-sm font-semibold border border-koperasi-100">
+                        <i class="fa-solid fa-phone text-xs mr-1"></i> 0857-1705-0604
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="py-8 px-4">
+    <main class="py-6 px-4 md:py-8">
         <div class="max-w-2xl mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-slate-800">Form Daftar Hadir</h2>
-                <p class="text-slate-500 text-sm mt-1">Lengkapi data kehadiran Anda secara digital.</p>
+            <div class="text-center mb-6 md:mb-8">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800">Form Daftar Hadir</h2>
+                <p class="text-slate-500 text-xs md:text-sm mt-1">Lengkapi data kehadiran Anda secara digital.</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
-                <div class="bg-koperasi-50 px-6 py-4 border-b border-koperasi-100 flex items-center gap-2">
+                <div class="bg-koperasi-50 px-5 py-4 border-b border-koperasi-100 flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-user text-koperasi-700"></i>
-                    <h3 class="font-semibold text-koperasi-800">Data Pengunjung</h3>
+                    <h3 class="font-semibold text-koperasi-800 text-sm md:text-base">Data Pengunjung</h3>
                 </div>
 
-                <form id="attendanceForm" class="p-6 md:p-8 space-y-6">
+                <form id="attendanceForm" class="p-5 md:p-8 space-y-5 md:space-y-6">
                     <!-- Nama Lengkap -->
                     <div>
-                        <label for="nama" class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <label for="nama" class="block text-xs md:text-sm font-semibold text-slate-700 mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fa-regular fa-user text-slate-400"></i>
+                                <i class="fa-regular fa-user text-slate-400 text-sm"></i>
                             </div>
                             <input type="text" id="nama" name="nama" required
                                 class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-koperasi-600 focus:border-koperasi-600 transition-all outline-none text-sm md:text-base"
@@ -118,13 +123,13 @@
 
                     <!-- Departemen -->
                     <div>
-                        <label for="dept" class="block text-sm font-semibold text-slate-700 mb-2">Departemen / Unit <span class="text-red-500">*</span></label>
+                        <label for="dept" class="block text-xs md:text-sm font-semibold text-slate-700 mb-2">Departemen / Unit <span class="text-red-500">*</span></label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fa-regular fa-building text-slate-400"></i>
+                                <i class="fa-regular fa-building text-slate-400 text-sm"></i>
                             </div>
                             <select id="dept" name="dept" required onchange="toggleLainnya(this)"
-                                class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-koperasi-600 focus:border-koperasi-600 transition-all outline-none text-sm md:text-base appearance-none cursor-pointer">
+                                class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-koperasi-600 focus:border-koperasi-600 transition-all outline-none text-sm md:text-base appearance-none cursor-pointer">
                                 <option value="" disabled selected>Pilih Departemen</option>
                                 <option value="Operasional">Operasional</option>
                                 <option value="Produksi">Produksi</option>
@@ -138,7 +143,7 @@
                                 <option value="Lainnya" class="font-bold text-koperasi-700">+ Lainnya (Ketik Baru)</option>
                             </select>
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+                                <i class="fa-solid fa-chevron-down text-slate-400 text-[10px]"></i>
                             </div>
                         </div>
                         <div id="dept-lainnya-container" class="hidden mt-3 transition-all duration-300">
@@ -150,22 +155,22 @@
 
                     <!-- Status Keanggotaan -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-3">Status Keanggotaan <span class="text-red-500">*</span></label>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <label class="flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group">
-                                <input type="radio" name="membership" value="Sudah Daftar Anggota" required class="w-5 h-5 text-koperasi-600 focus:ring-koperasi-500 border-slate-300">
-                                <span class="ml-3 text-sm font-medium text-slate-700 group-hover:text-koperasi-800">Sudah Daftar Anggota</span>
+                        <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-3">Status Keanggotaan <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                            <label class="flex items-center p-3 md:p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group active:bg-slate-100">
+                                <input type="radio" name="membership" value="Sudah Daftar Anggota" required class="w-4 h-4 md:w-5 md:h-5 text-koperasi-600 focus:ring-koperasi-500 border-slate-300">
+                                <span class="ml-3 text-xs md:text-sm font-medium text-slate-700 group-hover:text-koperasi-800">Sudah Daftar Anggota</span>
                             </label>
-                            <label class="flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group">
-                                <input type="radio" name="membership" value="Belum Daftar Anggota" required class="w-5 h-5 text-koperasi-600 focus:ring-koperasi-500 border-slate-300">
-                                <span class="ml-3 text-sm font-medium text-slate-700 group-hover:text-koperasi-800">Belum Daftar Anggota</span>
+                            <label class="flex items-center p-3 md:p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group active:bg-slate-100">
+                                <input type="radio" name="membership" value="Belum Daftar Anggota" required class="w-4 h-4 md:w-5 md:h-5 text-koperasi-600 focus:ring-koperasi-500 border-slate-300">
+                                <span class="ml-3 text-xs md:text-sm font-medium text-slate-700 group-hover:text-koperasi-800">Belum Daftar Anggota</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Saran & Masukan -->
                     <div>
-                        <label for="saran" class="block text-sm font-semibold text-slate-700 mb-2">Saran & Masukan</label>
+                        <label for="saran" class="block text-xs md:text-sm font-semibold text-slate-700 mb-2">Saran & Masukan</label>
                         <textarea id="saran" name="saran" rows="3"
                             class="w-full p-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-koperasi-600 focus:border-koperasi-600 transition-all outline-none text-sm md:text-base resize-none"
                             placeholder="Tuliskan saran atau keperluan Anda..."></textarea>
@@ -173,51 +178,51 @@
 
                     <!-- Tanda Tangan -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Tanda Tangan Digital <span class="text-red-500">*</span></label>
+                        <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-2">Tanda Tangan Digital <span class="text-red-500">*</span></label>
                         <div class="border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 relative overflow-hidden group hover:border-koperasi-600 transition-colors">
-                            <canvas id="signature-pad" class="w-full h-48 cursor-crosshair"></canvas>
-                            <div id="sign-placeholder" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-slate-300 select-none group-hover:text-slate-400 transition-colors">
-                                <i class="fa-solid fa-pen-nib text-2xl mb-2"></i>
-                                <span class="text-xs uppercase font-bold tracking-wider">Tanda Tangan Disini</span>
+                            <canvas id="signature-pad" class="w-full h-40 md:h-48 cursor-crosshair"></canvas>
+                            <div id="sign-placeholder" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-slate-300 select-none group-hover:text-slate-400 transition-colors px-4 text-center">
+                                <i class="fa-solid fa-pen-nib text-xl md:text-2xl mb-2"></i>
+                                <span class="text-[10px] md:text-xs uppercase font-bold tracking-wider">Gunakan Jari atau Stylus Disini</span>
                             </div>
-                            <button type="button" id="clear-btn" class="absolute bottom-2 right-2 bg-white text-slate-600 hover:text-red-500 text-xs px-3 py-1.5 rounded-md shadow border border-slate-200 z-10">
-                                <i class="fa-solid fa-trash-can mr-1"></i> Ulangi
+                            <button type="button" id="clear-btn" class="absolute bottom-2 right-2 bg-white text-slate-600 hover:text-red-500 text-[10px] md:text-xs px-3 py-1.5 rounded-md shadow border border-slate-200 z-10 active:scale-95 transition-transform">
+                                <i class="fa-solid fa-trash-can mr-1"></i> Bersihkan
                             </button>
                         </div>
                     </div>
 
-                    <div class="pt-4">
-                        <button type="submit" id="submitBtn" class="w-full bg-koperasi-800 hover:bg-koperasi-900 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                            <span id="btnText">Simpan Kehadiran</span>
-                            <i id="btnIcon" class="fa-solid fa-paper-plane"></i>
+                    <div class="pt-2 md:pt-4">
+                        <button type="submit" id="submitBtn" class="w-full bg-koperasi-800 hover:bg-koperasi-900 text-white font-bold py-3.5 md:py-4 px-6 rounded-xl shadow-lg transform transition active:scale-[0.98] flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="btnText" class="text-sm md:text-base">Simpan Kehadiran</span>
+                            <i id="btnIcon" class="fa-solid fa-paper-plane text-xs md:text-sm"></i>
                         </button>
                     </div>
                 </form>
             </div>
-            <p class="text-center text-xs text-slate-400 mt-6">&copy; 2024 Koperasi Konsumen Karyawan PT Mitra Kiara Indonesia</p>
+            <p class="text-center text-[10px] md:text-xs text-slate-400 mt-6 pb-8 uppercase tracking-widest">&copy; 2024 KAWAN MKI • Digital Attendance</p>
         </div>
     </main>
 
     <!-- Modal Sukses -->
-    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"></div>
-        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transition-all duration-300" id="modalContent">
-            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fa-solid fa-check text-3xl"></i>
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center hidden px-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full relative z-10 text-center shadow-2xl transition-all duration-300 transform scale-95" id="modalContent">
+            <div class="w-14 h-14 md:w-16 md:h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-2xl md:text-3xl"></i>
             </div>
-            <h3 class="text-xl font-bold text-slate-800 mb-2">Berhasil!</h3>
-            <p class="text-slate-500 mb-6">Data kehadiran Anda telah disimpan di Google Sheets.</p>
-            <button onclick="closeModal()" class="w-full bg-slate-800 text-white font-semibold py-2.5 rounded-lg hover:bg-slate-900 transition-colors">
-                Tutup
+            <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">Terima Kasih!</h3>
+            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Data kehadiran Anda telah berhasil disimpan di sistem kami.</p>
+            <button onclick="closeModal()" class="w-full bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 active:scale-95 transition-all text-sm">
+                Selesai
             </button>
         </div>
     </div>
 
     <script>
         /**
-         * PENTING: Ganti URL di bawah ini dengan URL Web App Anda dari Google Apps Script.
+         * URL Script Google Apps Script yang telah dipasangkan.
          */
-        const scriptURL = 'MASUKKAN_URL_DEPLOYMENT_ANDA_DI_SINI';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxu9BN9cdKF8LuvdmuPpapjIpMRH67J9TY8CYuBtDp9DGC0Hia9XZT0V0GirzXu3SNU/exec';
 
         // --- Signature Pad Logic ---
         const canvas = document.getElementById('signature-pad');
@@ -228,26 +233,48 @@
         let hasSignature = false;
 
         function resizeCanvas() {
+            const container = canvas.parentElement;
             const ratio = Math.max(window.devicePixelRatio || 1, 1);
-            canvas.width = canvas.offsetWidth * ratio;
-            canvas.height = canvas.offsetHeight * ratio;
+            canvas.width = container.offsetWidth * ratio;
+            canvas.height = container.offsetHeight * ratio;
             ctx.scale(ratio, ratio);
+            
             ctx.strokeStyle = '#1e40af';
             ctx.lineWidth = 2.5;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
+            
             hasSignature = false;
             placeholder.classList.remove('opacity-0');
         }
 
         window.addEventListener('resize', resizeCanvas);
-        setTimeout(resizeCanvas, 100);
+        window.addEventListener('load', resizeCanvas);
+        setTimeout(resizeCanvas, 300);
 
         function getPos(e) {
             const rect = canvas.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            let clientX, clientY;
+            
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            
             return { x: clientX - rect.left, y: clientY - rect.top };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            hasSignature = true;
+            placeholder.classList.add('opacity-0');
+            const { x, y } = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            if (e.cancelable) e.preventDefault();
         }
 
         function draw(e) {
@@ -255,16 +282,20 @@
             const { x, y } = getPos(e);
             ctx.lineTo(x, y);
             ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(x, y);
+            if (e.cancelable) e.preventDefault();
         }
 
-        canvas.addEventListener('mousedown', (e) => { isDrawing = true; hasSignature = true; placeholder.classList.add('opacity-0'); draw(e); });
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', () => { isDrawing = false; ctx.beginPath(); });
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isDrawing = true; hasSignature = true; placeholder.classList.add('opacity-0'); draw(e); }, {passive: false});
-        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, {passive: false});
-        canvas.addEventListener('touchend', () => { isDrawing = false; ctx.beginPath(); });
+        window.addEventListener('mouseup', stopDrawing);
+
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
 
         clearBtn.addEventListener('click', () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -279,7 +310,7 @@
             if (select.value === 'Lainnya') {
                 container.classList.remove('hidden');
                 input.required = true;
-                input.focus();
+                setTimeout(() => input.focus(), 100);
             } else {
                 container.classList.add('hidden');
                 input.required = false;
@@ -289,7 +320,11 @@
         const form = document.getElementById('attendanceForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!hasSignature) return alert('Silakan isi tanda tangan.');
+            
+            if (!hasSignature) {
+                alert('Silakan bubuhkan tanda tangan Anda terlebih dahulu.');
+                return;
+            }
 
             const submitBtn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
@@ -297,39 +332,41 @@
             btnText.innerText = "Mengirim...";
 
             const finalDept = form.dept.value === 'Lainnya' ? form['dept-lainnya'].value : form.dept.value;
-            
-            // Mengambil nilai radio button keanggotaan
             const membership = form.querySelector('input[name="membership"]:checked').value;
 
             const data = {
                 nama: form.nama.value,
                 departemen: finalDept,
-                status_keanggotaan: membership, // Kolom baru
+                status_keanggotaan: membership,
                 saran: form.saran.value,
                 tanda_tangan: canvas.toDataURL()
             };
 
-            if (scriptURL === 'MASUKKAN_URL_DEPLOYMENT_ANDA_DI_SINI') {
-                alert("Peringatan: URL Script Google belum diisi.");
-                console.log("Data:", data);
-                submitBtn.disabled = false;
-                btnText.innerText = "Simpan Kehadiran";
-                return;
-            }
-
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000);
+
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors', 
                     cache: 'no-cache',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    signal: controller.signal
                 });
 
-                document.getElementById('successModal').classList.remove('hidden');
+                clearTimeout(timeoutId);
+                
+                const modal = document.getElementById('successModal');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.querySelector('#modalContent').classList.remove('scale-95');
+                    modal.querySelector('#modalContent').classList.add('scale-100');
+                }, 10);
+
             } catch (err) {
-                console.error("Gagal simpan:", err);
-                alert("Terjadi kesalahan koneksi.");
+                console.error("Gagal mengirim data:", err);
+                alert("Gagal mengirim data. Pastikan koneksi internet Anda stabil.");
             } finally {
                 submitBtn.disabled = false;
                 btnText.innerText = "Simpan Kehadiran";
@@ -337,12 +374,17 @@
         });
 
         window.closeModal = () => {
-            document.getElementById('successModal').classList.add('hidden');
-            form.reset();
-            document.getElementById('dept-lainnya-container').classList.add('hidden');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            hasSignature = false;
-            placeholder.classList.remove('opacity-0');
+            const modal = document.getElementById('successModal');
+            modal.querySelector('#modalContent').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                form.reset();
+                document.getElementById('dept-lainnya-container').classList.add('hidden');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                hasSignature = false;
+                placeholder.classList.remove('opacity-0');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 200);
         };
     </script>
 </body>
